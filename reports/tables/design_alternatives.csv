@@ -1,0 +1,7 @@
+design,compatible,reason
+self-controlled case series,usually no,"SGLT2 inhibitor initiation vs GLP-1 receptor agonist initiation initiation is a chronic treatment choice, and Hospitalization for heart failure can alter future exposure and observation."
+case-crossover,usually no,Best for transient exposures with acute effects; this question concerns sustained initiation strategies.
+case-time-control,limited,"Could address exposure time trends for acute windows, but does not naturally target the 365-day new-user estimand."
+prior event rate ratio adjustment,exploratory,"May help with time-stable frailty/utilization differences, but incident-outcome exclusion and treatment switching complicate interpretation."
+difference-in-differences,only with policy/formulary shock,Requires a defensible intervention time and parallel-trends evidence.
+within-provider or within-site design,possibly,Can reduce site/provider confounding if enough overlap remains and provider preference is not a direct pathway to outcomes.

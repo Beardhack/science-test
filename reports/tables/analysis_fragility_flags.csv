@@ -1,0 +1,3 @@
+model,major_positivity_violation,effective_sample_size_collapse,residual_weighted_imbalance
+conventional_ps,False,False,False
+hdps_proxy_ps,False,False,False

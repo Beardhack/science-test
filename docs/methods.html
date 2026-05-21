@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Methods and Assumptions</title>
+  <style>
+    :root {
+      --ink: #1b1f23;
+      --muted: #5f6b7a;
+      --line: #d8dee7;
+      --paper: #f6f8fb;
+      --panel: #ffffff;
+      --blue: #245f9f;
+      --green: #2e7d5b;
+      --gold: #9a6a12;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px clamp(18px, 4vw, 52px);
+      background: #ffffff;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+    .brand { font-weight: 700; color: var(--blue); }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 18px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    nav a.active { color: var(--ink); }
+    main { max-width: 1180px; margin: 0 auto; padding: 28px clamp(18px, 4vw, 42px) 52px; }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 24px;
+      align-items: stretch;
+      padding: 30px 0 18px;
+    }
+    .hero.slim { grid-template-columns: 1fr; }
+    h1 { font-size: clamp(34px, 5vw, 58px); line-height: 1.02; margin: 8px 0 14px; letter-spacing: 0; }
+    h2 { margin: 0 0 14px; font-size: 22px; }
+    p { margin: 0 0 12px; color: var(--muted); }
+    .eyebrow { color: var(--green); font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0; }
+    .grade, .metric, article, .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    }
+    .grade { padding: 22px; }
+    .grade span, .metric span { display: block; color: var(--muted); font-size: 13px; font-weight: 700; }
+    .grade strong { display: block; font-size: 42px; margin: 8px 0; color: var(--gold); }
+    .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 18px 0 26px; }
+    .metric { padding: 18px; min-height: 130px; }
+    .metric strong { display: block; font-size: 34px; margin: 8px 0; color: var(--blue); }
+    .grid { display: grid; gap: 18px; margin: 18px 0; }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    article, .panel { padding: 18px; }
+    img { width: 100%; height: auto; display: block; border: 1px solid var(--line); }
+    .panel { margin: 18px 0; }
+    .compact { max-width: 860px; }
+    .summary-list p { border-top: 1px solid var(--line); padding-top: 12px; }
+    .button {
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 6px;
+      background: var(--blue);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    ul { margin: 0; padding-left: 20px; color: var(--muted); }
+    .table-wrap { overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; font-size: 13px; }
+    th, td { border-bottom: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; }
+    th { color: var(--muted); }
+    footer { padding: 22px clamp(18px, 4vw, 52px); color: var(--muted); border-top: 1px solid var(--line); }
+    @media (max-width: 860px) {
+      .hero, .grid.two, .metrics { grid-template-columns: 1fr; }
+      nav a { margin-left: 10px; }
+      h1 { font-size: 36px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">science-test</div>
+    <nav>
+      <a class="" href="index.html">Results</a>
+      <a class="active" href="methods.html">Methods</a>
+      <a href="https://github.com/Beardhack/science-test">GitHub</a>
+    </nav>
+  </header>
+  <main>
+    
+<section class="hero slim">
+  <div>
+    <p class="eyebrow">Target Trial and Causal Assumptions</p>
+    <h1>What Must Be True For The Result To Be Credible</h1>
+    <p>Exposure: SGLT2 inhibitor initiation. Comparator: GLP-1 receptor agonist initiation. Outcome: Hospitalization for heart failure.</p>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>Estimand</h2>
+  <p>Average treatment effect among eligible new users under a treatment-policy strategy</p>
+</section>
+
+<section class="grid two">
+  <article>
+    <h2>Design Guardrails</h2>
+    <ul>
+      <li>New-user active-comparator design.</li>
+      <li>Clear time zero at first qualifying dispensing or prescription.</li>
+      <li>Baseline covariates restricted to pre-index information.</li>
+      <li>Continuous baseline enrollment and washout checks.</li>
+      <li>Balance, overlap, and effective-sample-size diagnostics.</li>
+    </ul>
+  </article>
+  <article>
+    <h2>Unmeasured-Confounding Workbench</h2>
+    <ul>
+      <li>Proxy-rich and hdPS-like adjustment.</li>
+      <li>Negative-control outcome framework.</li>
+      <li>Binary-confounder tipping-point QBA.</li>
+      <li>Validation-substudy and external-calibration examples.</li>
+      <li>IV candidate screening without automatic endorsement.</li>
+    </ul>
+  </article>
+</section>
+
+<section class="panel">
+  <h2>Fragility Flags</h2>
+  <div class="table-wrap"><table><thead><tr><th>model</th><th>major_positivity_violation</th><th>effective_sample_size_collapse</th><th>residual_weighted_imbalance</th></tr></thead><tbody><tr><td>conventional_ps</td><td>False</td><td>False</td><td>False</td></tr><tr><td>hdps_proxy_ps</td><td>False</td><td>False</td><td>False</td></tr></tbody></table></div>
+</section>
+
+<section class="panel">
+  <h2>IV Screening</h2>
+  <div class="table-wrap"><table><thead><tr><th>candidate</th><th>variable</th><th>relevance_first_stage_difference</th><th>first_stage_f_statistic_approx</th><th>max_covariate_smd_by_instrument</th><th>exclusion_restriction_concerns</th><th>independence_concerns</th><th>monotonicity_concerns</th><th>recommendation</th><th>effect_estimation_status</th></tr></thead><tbody><tr><td>clinician prescribing preference</td><td>clinician_preference</td><td>0.147</td><td>96.489</td><td>0.064</td><td>Preference may affect monitoring, adherence support, or coding beyond drug choice.</td><td>Preference can cluster by site, patient mix, formulary, and calendar time.</td><td>Some clinicians may prefer one class only for selected phenotypes.</td><td>plausible with caveats</td><td>not_performed by default; requires pre-specified protocol sign-off</td></tr><tr><td>facility preference</td><td>facility_preference_score</td><td>0.066</td><td>18.356</td><td>3.453</td><td>Preference may affect monitoring, adherence support, or coding beyond drug choice.</td><td>Preference can cluster by site, patient mix, formulary, and calendar time.</td><td>Some clinicians may prefer one class only for selected phenotypes.</td><td>do not use</td><td>not_performed; screening only</td></tr></tbody></table></div>
+</section>
+
+<section class="panel">
+  <h2>Alternative Designs</h2>
+  <div class="table-wrap"><table><thead><tr><th>design</th><th>compatible</th><th>reason</th></tr></thead><tbody><tr><td>self-controlled case series</td><td>usually no</td><td>SGLT2 inhibitor initiation vs GLP-1 receptor agonist initiation initiation is a chronic treatment choice, and Hospitalization for heart failure can alter future exposure and observation.</td></tr><tr><td>case-crossover</td><td>usually no</td><td>Best for transient exposures with acute effects; this question concerns sustained initiation strategies.</td></tr><tr><td>case-time-control</td><td>limited</td><td>Could address exposure time trends for acute windows, but does not naturally target the 365-day new-user estimand.</td></tr><tr><td>prior event rate ratio adjustment</td><td>exploratory</td><td>May help with time-stable frailty/utilization differences, but incident-outcome exclusion and treatment switching complicate interpretation.</td></tr><tr><td>difference-in-differences</td><td>only with policy/formulary shock</td><td>Requires a defensible intervention time and parallel-trends evidence.</td></tr><tr><td>within-provider or within-site design</td><td>possibly</td><td>Can reduce site/provider confounding if enough overlap remains and provider preference is not a direct pathway to outcomes.</td></tr></tbody></table></div>
+</section>
+
+<section class="panel">
+  <h2>Requires Clinical Review Before Real-Data Use</h2>
+  <ul>
+    <li>Drug and outcome concept sets.</li>
+    <li>Incident heart-failure hospitalization definition and inpatient-position rules.</li>
+    <li>Negative-control candidates and rejection reasons.</li>
+    <li>QBA scenario values for glycemic control, eGFR, BMI, smoking, frailty, SES, adherence, and prescribing preference.</li>
+    <li>Death, competing-risk, censoring, treatment switching, and as-treated definitions.</li>
+  </ul>
+</section>
+
+<section class="panel compact">
+  <h2>Untestable Assumptions</h2>
+  <p>Conditional exchangeability, proxy validity, negative-control validity, QBA scenario credibility, validation-substudy representativeness, and IV exclusion/independence/monotonicity remain untestable or only partly testable.</p>
+  <a class="button" href="index.html">Back to results</a>
+</section>
+
+  </main>
+  <footer>
+    Synthetic demonstration only. Do not interpret as real-world comparative effectiveness evidence.
+  </footer>
+</body>
+</html>

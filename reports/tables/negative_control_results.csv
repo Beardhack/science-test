@@ -1,0 +1,3 @@
+negative_control,analysis,risk_exposed,risk_comparator,risk_ratio,log_risk_ratio,residual_association_detected,interpretation
+synthetic negative-control outcome,negative_control_crude,0.07136194029850747,0.06972715461238631,1.0234454667655513,0.023174843571775346,False,Near-null residual association under this synthetic negative control.
+synthetic negative-control outcome,negative_control_adjusted,0.06817019362126323,0.07274032062560518,0.9371720255693617,-0.06488842173832807,False,Near-null residual association under this synthetic negative control.

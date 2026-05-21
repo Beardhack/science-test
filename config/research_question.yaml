@@ -1,0 +1,143 @@
+{
+  "research_question": {
+    "project_slug": "sglt2_vs_glp1_hf_unmeasured_confounding",
+    "plain_language_question": "Among adults with type 2 diabetes initiating an SGLT2 inhibitor versus a GLP-1 receptor agonist, what is the effect on 1-year hospitalization for heart failure?",
+    "population": {
+      "inclusion_criteria": [
+        "Age >= 40 years on index date",
+        "Evidence of type 2 diabetes before index date",
+        "At least 365 days continuous enrollment before index date",
+        "New user of either exposure or comparator drug class"
+      ],
+      "exclusion_criteria": [
+        "Use of either study drug class in the 365 days before index date",
+        "Outcome event in the 180 days before index date, for incident-outcome analysis",
+        "Missing age or sex",
+        "Any data-quality violation that makes time zero ambiguous"
+      ]
+    },
+    "exposure": {
+      "name": "SGLT2 inhibitor initiation",
+      "drug_class_or_concept_set": "SGLT2 inhibitors",
+      "index_date_definition": "First qualifying dispensing or prescription after baseline washout"
+    },
+    "comparator": {
+      "name": "GLP-1 receptor agonist initiation",
+      "drug_class_or_concept_set": "GLP-1 receptor agonists",
+      "comparator_type": "active comparator"
+    },
+    "outcome": {
+      "name": "Hospitalization for heart failure",
+      "outcome_type": "time_to_event",
+      "primary_follow_up_days": 365,
+      "outcome_ascertainment_notes": "Prefer inpatient diagnosis codes in primary or discharge position. Treat death as a competing event in sensitivity analyses if death data exist."
+    },
+    "estimand": {
+      "primary_estimand": "Average treatment effect among eligible new users under a treatment-policy strategy",
+      "secondary_estimand": "Overlap-weighted treatment effect among patients with clinical equipoise",
+      "primary_effect_measures": [
+        "365-day risk difference",
+        "365-day risk ratio",
+        "hazard ratio"
+      ],
+      "sensitivity_effect_measures": [
+        "as-treated hazard ratio",
+        "subdistribution hazard or cumulative incidence difference if competing-risk data exist"
+      ]
+    },
+    "data": {
+      "preferred_schema": "OMOP CDM, claims, EHR, or linked claims-EHR",
+      "required_tables_or_files": [
+        "person or demographics",
+        "continuous enrollment / observation periods",
+        "drug exposure / dispensing / prescribing",
+        "condition diagnoses",
+        "procedure codes",
+        "visit or encounter data",
+        "measurements/labs if available",
+        "death if available"
+      ],
+      "if_real_data_missing": "Generate synthetic claims/EHR-like data with a known latent confounder U"
+    },
+    "baseline": {
+      "covariate_assessment_window_days": 365,
+      "washout_window_days": 365,
+      "do_not_use_post_index_covariates": true
+    },
+    "measured_confounder_domains": [
+      "age, sex, race/ethnicity if available",
+      "calendar time",
+      "diabetes duration/severity proxies",
+      "prior cardiovascular disease",
+      "prior heart failure",
+      "kidney disease and eGFR if available",
+      "hypertension",
+      "obesity/BMI if available",
+      "smoking if available",
+      "frailty proxies",
+      "healthcare utilization",
+      "prior medication history",
+      "lab testing intensity",
+      "clinician/site/system if available",
+      "socioeconomic proxies if available"
+    ],
+    "suspected_unmeasured_confounders": [
+      "HbA1c / glycemic control if not available",
+      "eGFR / renal function if not available",
+      "BMI / obesity severity if not available",
+      "smoking",
+      "frailty / functional status",
+      "socioeconomic status",
+      "clinician prescribing preference",
+      "adherence and health-seeking behavior",
+      "diabetes duration if not directly measured"
+    ],
+    "candidate_negative_control_outcomes": [""],
+    "candidate_negative_control_exposures": [""],
+    "external_validation_sources": [""]
+  },
+  "analysis": {
+    "random_seed": 20260520,
+    "synthetic_n": 5000,
+    "bootstrap_iterations": 40,
+    "hdps_top_k": 30,
+    "propensity": {
+      "ridge_penalty": 0.10,
+      "max_iterations": 80,
+      "ps_trim_lower": 0.025,
+      "ps_trim_upper": 0.975,
+      "weight_truncation_quantiles": [0.01, 0.99]
+    },
+    "diagnostic_thresholds": {
+      "max_weighted_smd": 0.10,
+      "major_positivity_tail_fraction": 0.05,
+      "minimum_ess_ratio": 0.35,
+      "negative_control_abs_log_rr": 0.10,
+      "clinically_unimportant_rr_low": 0.95,
+      "clinically_unimportant_rr_high": 1.05
+    },
+    "synthetic_parameters": {
+      "true_treatment_hazard_ratio": 0.78,
+      "u_treatment_strength": 0.75,
+      "u_outcome_strength": 0.70,
+      "proxy_quality": 0.65,
+      "outcome_baseline_hazard_per_day": 0.00042,
+      "positivity_stress": 0.0
+    },
+    "qba": {
+      "u_prevalence_exposed_grid": [0.10, 0.20, 0.30, 0.40, 0.50, 0.60],
+      "u_prevalence_comparator_grid": [0.10, 0.20, 0.30, 0.40, 0.50, 0.60],
+      "u_outcome_rr_grid": [1.10, 1.25, 1.50, 1.75, 2.00, 2.50, 3.00, 4.00],
+      "tipping_target_rr": 1.00
+    },
+    "simulation": {
+      "sample_sizes": [1200],
+      "repetitions": 4,
+      "u_treatment_strengths": [0.0, 0.5, 1.0],
+      "u_outcome_strengths": [0.0, 0.5, 1.0],
+      "proxy_qualities": [0.25, 0.75],
+      "positivity_stress_values": [0.0, 0.8],
+      "outcome_baseline_hazards_per_day": [0.00030, 0.00070]
+    }
+  }
+}

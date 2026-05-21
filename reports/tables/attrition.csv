@@ -1,0 +1,12 @@
+step,excluded,remaining
+Source population,0,5000
+Age >= 40 years on index date,13,4987
+Evidence of type 2 diabetes before index date,0,4987
+At least 365 days continuous enrollment before index date,0,4987
+No use of either study drug class in prior 365 days,231,4756
+No outcome event in prior 180 days,241,4515
+Nonmissing age and sex,6,4509
+No data-quality violation making time zero ambiguous,56,4453
+Qualifying index dispensing or prescription,0,4453
+Mutually exclusive exposure/comparator assignment at time zero,0,4453
+Clear time zero,0,4453

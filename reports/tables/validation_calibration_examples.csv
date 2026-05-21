@@ -1,0 +1,4 @@
+method,status,validation_n,conventional_rr_subset,oracle_rr_subset,log_rr_calibration_delta,interpretation
+propensity_score_calibration_demo,synthetic_example,1113,1.46043296582331,1.11785477870942,-0.26732147121505,Apply this delta to the full-data log RR only if the validation subset is representative and U is measured comparably.
+external_adjustment_stub,ready_for_inputs,0,,,,"Supply external prevalence and U-outcome association estimates, then route them through the QBA grid."
+two_stage_imputation_stub,ready_for_inputs,0,,,,Use when lab/EHR/chart-review data measure otherwise unavailable confounders in a subset.
